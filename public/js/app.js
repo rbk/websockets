@@ -1,5 +1,5 @@
 var app = angular.module('chatApplication', []); // No dependencies, hence the empty array
-var socket = io.connect('htt://localhost');
+var socket = io.connect('http://localhost');
 
 
 // A factory is a service you can inject into a controller
@@ -8,6 +8,7 @@ var socket = io.connect('htt://localhost');
 app.factory('Data', function(){
 	return { fname: "Richard", lname: "Keller", alpha: "abcdefghijklmnopqrstuvwxyz" };
 });
+
 app.factory('socket', function ($rootScope) {
   var socket = io.connect();
   return {
@@ -53,6 +54,9 @@ function singleChat( $scope, socket ){
             message = document.forms['sendMessage'].elements['message'].value,
             object = {"name" : "SampleName", "content" : message};
         
+        document.forms['sendMessage'].elements['message'].focus();
+        document.forms['sendMessage'].elements['message'].value = "";
+        
         $scope.messages.push( object );
         socket.emit('send', object );
         
@@ -61,50 +65,8 @@ function singleChat( $scope, socket ){
     socket.on( 'converse', function(data){
         $scope.messages.push(data); 
     });
-    
-    
-    
-    $scope.doThis = function(d){
-        console.log(d)
-    }
-
 }
-socket.on('converse', function(data){
-//    $scope.messages.push(data);
-})
+
 socket.on('welcome', function( data ){
         console.log( data.message )
 });
-
-function firstCtrl( $scope, Data ){
-	$scope.data = Data;
-}
-function secondCtrl( $scope, Data ){
-	$scope.data = Data;
-}
-
-
-
-
-
-    
-
-
-document.getElementById('sendMessage').addEventListener('click', function(){
-    document.forms['sendMessage'].elements['message'].focus();
-    document.forms['sendMessage'].elements['message'].value = "";
-    return false;
-})
-
-//console.log( document.forms['sendMessage'].elements[0].value = "test" )
-
-var i = (function(){
-    console.log( 'Auto called function? No' ) 
-})
-
-// var socket = io.connect('http://localhost');
-//  socket.on('news', function (data) {
-//    console.log(data);
-//    socket.emit('my other event', { my: 'data' });
-//  });
-

@@ -25,10 +25,8 @@ io.sockets.on('connection', function(socket){
     
     
     socket.on( 'send', function(data){
-        console.log( data )
-//        socket.emit( 'converse', data );
+        // data here, how do I emit it to other sockets $scope
         socket.broadcast.emit('converse', data);
-//        data here, how do I emit it to other sockets $scope
         
     });
     
