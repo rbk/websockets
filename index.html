@@ -10,7 +10,7 @@
         <script src="js/angular.js"></script>
         
     </head>
-    <body>
+    <body ng-app="chatApplication">
         <nav class="top-bar">
             <ul class="title-area">
                 <li class="name">
@@ -21,11 +21,15 @@
             </ul>        
         </nav>
         <br/>
-        <div class="row">
-            <textarea id="message_board"></textarea>
+        <div class="row" ng-controller="singleChat">
+            <div id="message_board" class="panel">
+                <ul class="side-nav">
+                    <li ng-repeat="message in messages"><strong>{{message.name}}: </strong>{{message.content}}</li>
+                </ul>
+            </div>
             <form id="sendMessage">
                 <input type="text" id="message" />
-                <input type="submit" class="button" value="Send Message" />
+                <input type="submit" ng-click="sendMessage()" class="button" value="Send Message" />
             </form>
         </div>
 

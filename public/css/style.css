@@ -22,4 +22,10 @@ body {
 .row input {
     max-width: 600px;
 }
-        
+    
+#message_board {
+    background-color: #FFF;
+    box-shadow: inset 0px 0px 15px 0px #C9C9C9;
+    border: 0;
+    overflow-y: scroll;
+}

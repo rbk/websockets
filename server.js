@@ -22,7 +22,17 @@ io.sockets.on('connection', function(socket){
     
     // Simple welcome message
     socket.emit( 'welcome', { "message": "Welcome New Developer!" } );
+    
+    
+    socket.on( 'send', function(data){
+        console.log( data )
+//        socket.emit( 'converse', data );
+        socket.broadcast.emit('converse', data);
+//        data here, how do I emit it to other sockets $scope
         
+    });
+    
+    
     // Other functions for other actions... todo
     
     
