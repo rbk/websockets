@@ -1,0 +1,12 @@
+{
+    "name": "ChatWithWebNativeSockets",
+    "version": "0.0.0",
+    "description": "Playin with web sockets",
+    "private": "true",
+    "dependencies": {
+        "express": "3.4.3",
+        "socket.io": "latest",
+        "foundation": "latest"
+    },
+    "author": "Richard"
+}
