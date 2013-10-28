@@ -31,3 +31,6 @@ body {
     border: 0;
     overflow-y: scroll;
 }
+div {
+/*    border: 1px solid #CCC;*/
+}
