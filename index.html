@@ -25,7 +25,7 @@
         <div class="row">
 		  <div class="large-12 columns">
                 <div class="section-container tabs" data-section>
-                    <section class="active">
+                    <section class="">
                         <p class="title" data-section-title><a href="#room">Chat Room</a></p>
                         <div class="content" data-section-content>
                             <div ng-controller="singleChat">
@@ -55,6 +55,32 @@
                                 <li>Popup chat</li>
                                 <li>User authentication</li>
                             </ul>
+                        </div>
+                    </section>
+                    <section class="active">
+                        <p class="title" data-section-title><a href="#chicCowToe">TTT</a></p>
+                        <div class="content" data-section-content>
+                            <div ng-controller="ticTacToeCtrl">
+                            <div class="turn-notifaction">Your Turn</div>
+                            <div class="tttboard">
+                                
+                                <div ng-repeat="square in squares" ng-click="addMark(index)" class="square">{{square.value}}</div>
+<!--
+                                <div class="square"></div>
+                                <div class="square"></div>
+                                <div class="square"></div>
+                                <div class="square"></div>
+                                <div class="square"></div>
+                                <div class="square"></div>
+                                <div class="square"></div>
+                                <div class="square"></div>
+-->
+                                
+                                
+                            
+                            </div>
+                        
+                            </div>
                         </div>
                     </section>
                 </div>
