@@ -46,9 +46,8 @@ app.filter('reverse', function(Data){
 
 function singleChat( $scope, socket ){
     
-//    $scope.userName = prompt('Please enter your name:');
-    $scope.userName = "Richard";
-    $scope.messages = [{"name":"Bot", "content":"Welcome to the coolest place on the internet."}];
+    $scope.userName = "test";
+    $scope.messages = [{"name":"Bot", "content":"Welcome to chat."}];
     
     $scope.sendMessage = function(){
         
@@ -67,9 +66,14 @@ function singleChat( $scope, socket ){
     socket.on( 'converse', function(data){
         $scope.messages.push(data); 
     });
-    socket.on( 'connect', function(data){
-        $scope.messages.push( {'name': 'Bot','content': $scope.userName + ' has entered the chat room.'} ) 
-    });
+}
+
+function ticTacToeCtrl( $scope, socket ){
+    $scope.addMark = function(index){
+        console.log( index ); 
+    }
+    $scope.squares = [{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""}];
+    
 }
 
 socket.on('welcome', function( data ){

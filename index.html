@@ -23,10 +23,9 @@
         </nav>
         <br/>
         <div class="row">
-            <div class="large-3 columns">Menu Stuff</div>
-            <div class="large-6 columns">
+            <div class="large-12 columns">
                 <div class="section-container tabs" data-section>
-                    <section class="active">
+                    <section class="">
                         <p class="title" data-section-title><a href="#room">Chat Room</a></p>
                         <div class="content" data-section-content>
                             <div ng-controller="singleChat">
@@ -42,7 +41,6 @@
                             </div>
                         </div>
                     </section>
-                    
                     <section>
                         <p class="title" data-section-title><a href="#todo-list">Todo List</a></p>
                         <div class="content" data-section-content>
@@ -58,12 +56,26 @@
                             </ul>
                         </div>
                     </section>
+                    <section class="active">
+                        <p class="title" data-section-title><a href="#chicCowToe">TTT</a></p>
+                        <div class="content" data-section-content>
+                            <div ng-controller="ticTacToeCtrl">
+                            <div class="turn-notifaction">Your Turn</div>
+                            <div class="tttboard">
+                                
+                                <div ng-repeat="square in squares" ng-click="addMark(index)" class="square">{{square.value}}</div>
+                    
+                            </div>
+                        
+                            </div>
+                        </div>
+                    </section>
                 </div><!-- end sections-->
+                </div>
             </div>
-            <div class="large-3 columns">User List</div>
-        </div>
         
         <footer></footer>
+        
         <script src="/foundation/js/vendor/zepto.js"></script>
         <script src="/foundation/js/vendor/jquery.js"></script>
         <script src="/foundation/js/foundation.min.js"></script>
