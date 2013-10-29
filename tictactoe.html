@@ -11,8 +11,8 @@
             
             */
             .board {
-                height: 164px;
-                width: 164px;
+                height: 727px;
+                width: 727px;
                 margin: 0 auto;
                 overflow: hidden;
             }
@@ -22,8 +22,8 @@
                 display: inline-block;
                 float: left;
                 border: 1px solid #CCC;
-                height: 50px;
-                width: 50px;    
+                height: 150px;
+                width: 200px;    
             }
             .board .sq:hover {
 /*                background-color: #CCC;   */
@@ -41,23 +41,24 @@
             }
             .sq span {
                 position: absolute;
-                font-size: 50px;
-                left: 8px;
+                font-size: 150px;
+                left: 42px;
                 line-height: 1.5em;
-                top: -10px;
+                top: -29px;
             }
             *::selection {
                 background: transparent;
+            }
+            .notify {
+                font-size: 44px;
+                color: #277177;
             }
         
         </style>
         <script>
             
             jQuery(document).ready(function($){
-                
-                //- create 9 squares
-                //- option to select a who will go first turn
-                //- start button 
+
                 $(document).on('change', 'input[name=firstTurn]', function(){
                     if( $('#player2').val() == "" || $('#player2').val() == ""){
                         alert('Please choose names!');
@@ -77,10 +78,6 @@
                     }
                 });
                 
-                var xes = [];
-                var oes = [];
-                var moves = [0,1,2,3,4,5,6,7,8];
-                
                 var row1 = ["","",""]
                 var row2 = ["","",""]
                 var row3 = ["","",""]
@@ -88,7 +85,7 @@
                 $(document).on('click','.sq',function(){
                     
                     $(this).addClass('taken');
-//                    console.log( this )
+                    
                     if( $(this).text() != "" ) {
                         return false;  
                     }
@@ -97,43 +94,26 @@
                     if( $('#xoxo').val() == "X" ){
                         letter = "O";
                         $('#xoxo').val("O");
-                        $('.notify').html("X's Turn");
+                        $('.notify').html($('#player1').val() + "'s (X's) Turn");
                     } else {
                         letter = "X";
                         $('#xoxo').val("X");
-                        $('.notify').html("O's Turn");
+                        $('.notify').html( $('#player2').val() + "'s (O's) Turn");
                     }
                    
                     $(this).html('<span>'+letter+'</span>');
                     var index = $(this).index();
                     var place_in_row = $(this).attr('data-index');
-                    var all_sqs = $('.board').children();
                     
                     if( letter == "O" ){
                         whatRow(index, "O", place_in_row);
                     } else {
                         whatRow(index, "X", place_in_row);
-                        
-//                        xes.push(index)
-//                        var remove = moves.indexOf(index)
-//                        moves.splice(remove,1)
                     }
-//                    console.log("Xes: " + xes)
-//                    console.log("Oes: " + oes)
-//                    console.log("Moves: " + moves)
-                    
-                    /*
-                        
-                        put x in box
-                        change turn to o's if x turn else o turn
-                        flash red if already x or o in box
-                        
-                        check for winner
-                        
-                    
-                    */
+
                 })
                 function whatRow(index, letter, place_in_row){
+                    
                    if( index > 5 ){
                         row3[place_in_row] = letter;
                     } else if( index < 5 && index > 2){
@@ -141,41 +121,39 @@
                     } else {
                         row1[place_in_row] = letter;
                     }
-                    console.log( row1 )
-                    console.log( row2 )
-                    console.log( row3 )
+                    checkForWinner(letter);
+                    
                 }
-                function checkForWinner(){
-                            
-                    /*
-                        8 possible ways to win
-                            - all one kind arcoss
-                            - all one kind down
-                            - all one kind diagonal
-                        
-                        // rows
-                        [1,2,3]
-                        [4,5,6]
-                        [7,8,9]
-                        
-                        // diagonal
-                        [1,5,9]
-                        [7,5,3]
-                        
-                        // cols
-                        [1,4,7]
-                        [2,5,8]
-                        [3,6,9]
-                        
-                        [1,1,1]
-                        
-                    */
-                
-                }
-                
-            });
-//            console.log( ["1","2","3"].join("") === ["x","x","x"].join("") )
-        
+                function checkForWinner(letter){
+                    
+                    var winner = "";
+                    
+                    var three = letter+letter+letter;
+                    
+                    if( row1.join("") === letter+letter+letter )
+                         winner = letter;
+                    if( row2.join("") === letter+letter+letter )
+                         winner = letter;
+                    if( row3.join("") === letter+letter+letter )
+                         winner = letter;
+                    
+                    for( var i =0; i < 2; i++ ){
+                        if( row1[i] + row2[i] + row3[i] === three ){
+                                 winner = letter;
+                        }
+                    }
+                    if( row1[0] + row2[1] + row3[2] === three ){
+                         winner = letter;
+                    }
+                    if( row3[0] + row2[1] + row1[2] === three ){
+                         winner = letter;
+                    }
+                    if( winner != "" ){
+                        $('.notify').html(letter + ' wins!!!');
+                    }
+                    
+                } 
+            });        
         </script>
 
     </head>
@@ -184,8 +162,8 @@
             <div class="notify" style="display:none;"></div>
             <form id="settings">
                 <input type="hidden" id="xoxo" value=""/>
-                Player 1 name: <input type="text" id="player1" placeholder="Enter player 1 name" value="Richard" /><br>
-                Player 2 name: <input type="text" id="player2" placeholder="Enter player 2 name" value="Suzanne" /><br>
+                Player 1 name: <input type="text" id="player1" placeholder="Enter player 1 name" value="" /><br>
+                Player 2 name: <input type="text" id="player2" placeholder="Enter player 2 name" value="" /><br>
                 
                 <label>Who should go first? </label> <span id="turn"></span><br>
                 Player 1 <input type="radio" name="firstTurn" value="player1" />
@@ -196,7 +174,6 @@
         
         <div class="main">
             <ul class="board">
-                
                 <li class="sq" data-index="0"></li>
                 <li class="sq" data-index="1"></li>
                 <li class="sq" data-index="2"></li>
@@ -206,8 +183,6 @@
                 <li class="sq" data-index="0"></li>
                 <li class="sq" data-index="1"></li>
                 <li class="sq" data-index="2"></li>
-            
-                
             </ul>
         </div>
     
