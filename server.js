@@ -15,6 +15,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function( req, res ){
     res.sendfile('index.html');
 });
+app.get('/tic', function( req, res ){
+    res.sendfile('tictactoe.html');
+});
 
 
 //io.sockets.on('connection', function (socket) {

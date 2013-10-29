@@ -44,37 +44,7 @@ app.filter('reverse', function(Data){
 
 // Learn tests later
 
-function singleChat( $scope, socket ){
-    
-    $scope.userName = "test";
-    $scope.messages = [{"name":"Bot", "content":"Welcome to chat."}];
-    
-    $scope.sendMessage = function(){
-        
-        var board = document.getElementById('message_board'),
-            message = document.forms['sendMessage'].elements['message'].value,
-            object = {"name" : $scope.userName, "content" : message};
-        
-        document.forms['sendMessage'].elements['message'].focus();
-        document.forms['sendMessage'].elements['message'].value = "";
-        
-        $scope.messages.push( object );
-        socket.emit('send', object );
-        
-        board.scrollTop = board.scrollHeight;
-    };
-    socket.on( 'converse', function(data){
-        $scope.messages.push(data); 
-    });
-}
 
-function ticTacToeCtrl( $scope, socket ){
-    $scope.addMark = function(index){
-        console.log( index ); 
-    }
-    $scope.squares = [{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""},{"value":""}];
-    
-}
 
 socket.on('welcome', function( data ){
         console.log( data.message )
