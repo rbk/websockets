@@ -5,11 +5,10 @@ body {
 	background: url( ../images/p6.png );
 }
   .wrap {
-/*
+    background-color: #FFF;
   	max-width: 75%;
     padding: 2em;
     margin: 2em auto;
-*/
 }
 #message_board {
     height: 300px;

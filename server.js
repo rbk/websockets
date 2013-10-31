@@ -18,6 +18,9 @@ app.get('/', function( req, res ){
 app.get('/tic', function( req, res ){
     res.sendfile('tictactoe.html');
 });
+app.get('/angular', function( req, res ){
+    res.sendfile('angular_stuff.html');
+});
 
 
 //io.sockets.on('connection', function (socket) {

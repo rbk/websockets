@@ -22,57 +22,26 @@
             </ul>        
         </nav>
         <br/>
-        <div class="row">
-            <div class="large-12 columns">
-                <div class="section-container tabs" data-section>
-                    <section class="">
-                        <p class="title" data-section-title><a href="#room">Chat Room</a></p>
-                        <div class="content" data-section-content>
-                            <div ng-controller="singleChat">
-                                <div id="message_board" class="panel">
-                                    <ul class="side-nav">
-                                        <li ng-repeat="message in messages"><strong>{{message.name}}: </strong>{{message.content}}</li>
-                                    </ul>
-                                </div>
-                                <form id="sendMessage">
-                                    <input type="text" id="message" />
-                                    <input type="submit" ng-click="sendMessage()" class="button" value="Send Message" />
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <p class="title" data-section-title><a href="#todo-list">Todo List</a></p>
-                        <div class="content" data-section-content>
-                            <h3>Todos:</h3>
-                            <ul class="side-nav">
-                                <li>Prevent spamming</li>
-                                <li>User names/settings</li>
-                                <li>Private chat rooms</li>
-                                <li>User list on side</li>
-                                <li>Notifications</li>
-                                <li>Popup chat</li>
-                                <li>User authentication</li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="active">
-                        <p class="title" data-section-title><a href="#chicCowToe">TTT</a></p>
-                        <div class="content" data-section-content>
-                            Three X's or O's, in a row, column, or diagonal to win 
-                            <div ng-controller="ticTacToeCtrl">
-                                <div class="turn-notifaction panel callout">Your Turn</div>
-                                <div class="tttboard">
-                                    
-                                    <div ng-repeat="square in squares" ng-click="addMark($index)" class="square">{{square.value}}</div>
-                        
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div><!-- end sections-->
-                </div>
+        <div ng-controller="singleChat">
+            <div id="message_board" class="panel">
+                <ul class="side-nav">
+                    <li ng-repeat="message in messages"><strong>{{message.name}}: </strong>{{message.content}}</li>
+                </ul>
             </div>
+            <form id="sendMessage">
+                <input type="text" id="message" />
+                <input type="submit" ng-click="sendMessage()" class="button" value="Send Message" />
+            </form>
+        </div>
+        <ul class="side-nav">
+            <li>Prevent spamming</li>
+            <li>User names/settings</li>
+            <li>Private chat rooms</li>
+            <li>User list on side</li>
+            <li>Notifications</li>
+            <li>Popup chat</li>
+            <li>User authentication</li>
+        </ul>
         
         <footer></footer>
         

@@ -22,9 +22,6 @@ function singleChat( $scope, socket ){
     });
 }
 
-
-
-
 function ticTacToeCtrl( $scope, socket ){
     $scope.addMark = function(index){
         console.log( index );
@@ -33,3 +30,9 @@ function ticTacToeCtrl( $scope, socket ){
     $scope.squares = [1,2,3,4,5,6,7,8,9];
     
 }
+
+app.controller('testCtrl',function($scope){
+    
+    
+     
+});
