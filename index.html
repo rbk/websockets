@@ -13,13 +13,20 @@
     </head>
     <body ng-app="chatApplication">
         <nav class="top-bar">
-            <ul class="title-area">
-                <li class="name">
-                    <h1>
-                        <a href="#">Chat with Socket.io, AngularJs, and ExpressJs.</a>
-                    </h1>
-                </li>
-            </ul>        
+            <section class="top-bar-section">
+            <ul class="left">
+                 <li><a href="/angular">Angular</a></li>
+                <li><a href="/todo">Todo App</a></li>
+                <li><a href="/tic">Tic Tac Toe</a></li>
+               <!--  <li class="has-dropdown not-click"><a href="#">Menu</a>
+                    <ul class="dropdown">
+                        <li><a href="/angular">Angular</a></li>
+                        <li><a href="/todo">Todo App</a></li>
+                        <li><a href="/tic">Tic Tac Toe</a></li>
+                    </ul>
+                </li> -->
+            </ul>
+            </section>       
         </nav>
         <br/>
         <div ng-controller="singleChat">
