@@ -8,28 +8,48 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"/>        
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/angular.js"></script>
-        
+        <script src="js/moment.js"></script>      
     </head>
-    <body ng-app="TodoApp">
+    <body ng-app="todoApp">
         <nav class="top-bar">
             <ul class="title-area">
                 <li class="name">
                     <h1>
-                        <a href="#">Simple Todo App</a>
+                        <a href="/">Simple Todo App</a>
                     </h1>
                 </li>
             </ul>        
         </nav>
         <br>
-       	<div class="row">
+        <div ng-controller="TodoCtrl">
+            <div class="row">
+                <div class="columns large-12 large-centered">
+                    <div class="panel">
+                        <p>This app is using MongoDB, ExpressJS, AngularJS, and Foundation.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns large-3">
+                    <h3>Add Todo</h3>
+                    <input type="text" ng-model="todoText" placeholder="Enter a todo..." />
+                    <button ng-click="addTodo()">Add Todo</button>
 
-
-
-       	</div>	
+                </div>
+        
+                <div class="columns large-9">
+                    <h3>Array: $scope.todos</h3>
+                    <div class="">
+                    <div ng-repeat=" todo in todos "><h2><a ng-click="removeTodo($index)">{{todo.todoText}}</a></h2></div>
+                    </div>
+                </div>
 
 
         
-        
+        </div><!-- end todo controller -->
+
+
+
         <script src="/foundation/js/vendor/zepto.js"></script>
         <script src="/foundation/js/vendor/jquery.js"></script>
         <script src="/foundation/js/foundation.min.js"></script>

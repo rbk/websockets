@@ -5,7 +5,8 @@ var express = require('express'),
 var io = sockets.listen( app.listen( port ) );
 
 var mongoose = require('mongoose');
-var database = "angulartestdb";
+var database = "todo-app";
+
 mongoose.connect('mongodb://localhost/' + database, function(err){
     if( err ){
         console.log( 'Error connection to database: ' + database );
@@ -21,7 +22,36 @@ var schema = mongoose.Schema({
 
 });
 
-var items = mongoose.model('Todos', schema ); 
+var todoSchema = mongoose.Schema({
+    todoText : { type : String },
+    dateAdded : { type : Date, Default : Date.now },
+    dateCompleted : { type : Date }
+});
+var Todo = mongoose.model('Todos', todoSchema );
+
+io.sockets.on('connection', function(socket){
+    var data = [];
+    var query = Todo.find({});
+    query.exec(function(err, todos){
+        socket.emit('load_todos', todos );
+    });
+
+    socket.on('add_todo', function(data){
+        var new_todo = new Todo( data );
+        new_todo.save();
+    })
+    socket.on('remove_todo', function(data){
+        var object = {_id:data};
+        var query = Todo.remove( object );
+        query.exec(function(err, todos){
+            // socket.emit('load_todos', todos );
+            console.log( "error: " + err );
+            // console.log( "error: " + err );
+        });
+        // var new_todo = new Todo( data );
+        // new_todo.save();
+    })
+});
 
 // var chatSchema = mongoose.Schema({
 //     nick: String,
@@ -66,7 +96,9 @@ io.sockets.on('connection', function(socket){
         socket.broadcast.emit('converse', data);
         
     });
-    
+
+
+
     
     // Other functions for other actions... todo
     
