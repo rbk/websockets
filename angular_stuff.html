@@ -11,14 +11,18 @@
         <script>
         
             var app = angular.module('newApp',[]);
+            
             app.controller('testCtrl', function($scope, $http){
                  $scope.userNames = ["Richard","Suzanne"];
                             
             });
             app.directive('firstDirective', function(){
-               return {
+               return function( scope, element, attr ) {
                    test : "this is something from a directive"
                } 
+            });
+            app.factory('testFactory', function(){
+                
             });
         
         </script>
@@ -30,7 +34,7 @@
             <div ng-app="newApp">
                 
                 <div ng-controller="testCtrl">
-                    {{userNames}}
+                    <div ng-repeat="user in userNames">{{user}}</div>
                     <div firstDirective></div>
                 </div>
             

@@ -1,3 +1,4 @@
+var socket = io.connect();
 function singleChat( $scope, socket ){
     
     $scope.userName = "test";

@@ -1,13 +1,14 @@
 {
-    "name": "ChatWithWebNativeSockets",
+    "name": "allinoneapp",
     "version": "0.0.0",
-    "description": "Playin with web sockets",
+    "description": "Playin with web sockets,angular,node,express,mongo",
     "private": "true",
     "dependencies": {
         "express": "3.4.3",
         "socket.io": "latest",
         "foundation": "latest",
-        "progress": "latest"
+        "progress": "latest",
+        "mongoose":"latest"
     },
     "author": "Richard"
 }
