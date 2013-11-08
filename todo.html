@@ -34,9 +34,10 @@
                     <h3>Add Todo</h3>
                     <input type="text" ng-model="todoText" placeholder="Enter a todo..." />
                     <button ng-click="addTodo()">Add Todo</button>
-
+                    
                 </div>
                 <div class="columns large-9">
+                    {{todos}}
                     <h3>Array: $scope.todos</h3>
                     <div class="">
                     <div ng-repeat=" todo in todos "><h2><a ng-click="removeTodo($index)">{{todo.todoText}}</a></h2></div>

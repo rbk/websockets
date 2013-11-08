@@ -43,8 +43,10 @@ app.controller('TodoCtrl', function( $scope, socket ){
 	}
 	$scope.removeTodo = function(index){
 		var data = $scope.todos[index]._id;
-		if( !data )
+		if( !data ){
+			console.log( "Index empty" )
             return false;
+		}
 		$scope.todos.splice(index,1);
 		socket.emit('remove_todo', data );
 
