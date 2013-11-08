@@ -1,3 +1,5 @@
+"use_strict";
+
 var express = require('express'),
     app = express(),
     sockets = require('socket.io'),
@@ -23,6 +25,7 @@ var schema = mongoose.Schema({
 });
 
 var todoSchema = mongoose.Schema({
+    id : { type : number },
     todoText : { type : String },
     dateAdded : { type : Date, Default : Date.now },
     dateCompleted : { type : Date }
@@ -30,7 +33,6 @@ var todoSchema = mongoose.Schema({
 var Todo = mongoose.model('Todos', todoSchema );
 
 io.sockets.on('connection', function(socket){
-    var data = [];
     var query = Todo.find({});
     query.exec(function(err, todos){
         socket.emit('load_todos', todos );
@@ -41,7 +43,7 @@ io.sockets.on('connection', function(socket){
         new_todo.save();
     })
     socket.on('remove_todo', function(data){
-        var object = {_id:data};
+        var object = {id:data.id};
         var query = Todo.remove( object );
         query.exec(function(err, todos){
             // socket.emit('load_todos', todos );

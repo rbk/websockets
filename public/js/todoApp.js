@@ -31,7 +31,9 @@ app.controller('TodoCtrl', function( $scope, socket ){
 	})
 
 	$scope.addTodo = function(){
-		var data = { 
+		console.log( $scope.todos.length );
+		var data = {
+				'id' : $scope.todos.length + 1,
 				'todoText' : $scope.todoText, 
 				// 'dateAdded' : moment().format("MMM Do YY"), 
 				'dateCompleted' : '' 
@@ -42,7 +44,7 @@ app.controller('TodoCtrl', function( $scope, socket ){
 		console.log( "Sending data to server..." );
 	}
 	$scope.removeTodo = function(index){
-		var data = $scope.todos[index]._id;
+		var data = $scope.todos[index].id;
 		if( !data ){
 			console.log( "Index empty" )
             return false;

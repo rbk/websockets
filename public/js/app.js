@@ -1,3 +1,5 @@
+"use_strict";
+
 var app = angular.module('chatApplication', []); // No dependencies, hence the empty array
 var socket = io.connect('http://localhost');
 
