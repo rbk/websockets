@@ -25,15 +25,15 @@ app.factory('socket', function ($rootScope) {
 });
 
 app.controller('TodoCtrl', function( $scope, socket ){
+	
+	$scope.todos = [];
 
-	socket.on('load_todos', function(data){
-		$scope.todos = data;
+	socket.on('load_todos', function( data ){
+		
 	})
 
 	$scope.addTodo = function(){
-		console.log( $scope.todos.length );
-		var data = {
-				'id' : $scope.todos.length + 1,
+		var data = { 
 				'todoText' : $scope.todoText, 
 				// 'dateAdded' : moment().format("MMM Do YY"), 
 				'dateCompleted' : '' 
@@ -44,7 +44,7 @@ app.controller('TodoCtrl', function( $scope, socket ){
 		console.log( "Sending data to server..." );
 	}
 	$scope.removeTodo = function(index){
-		var data = $scope.todos[index].id;
+		var data = $scope.todos[index]._id;
 		if( !data ){
 			console.log( "Index empty" )
             return false;
