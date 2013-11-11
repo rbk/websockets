@@ -38,11 +38,11 @@
                     </form>
                     
                 </div>
-                <div class="columns large-6">
+                <div class="columns large-5">
                     <h2>Array: $scope.todos</h2>
-                    <div class="panel">
-                        <div ng-repeat=" todo in todos "><h6><a ng-click="removeTodo($index)">{{todo.todoText}}</a></h6></div>
-                    </div>
+                    <ol>
+                        <li ng-repeat=" todo in todos "><a ng-click="removeTodo($index)">{{todo.todoText}}</a></li>
+                    </ol>
                 </div>
             </div>
             <div class="row">

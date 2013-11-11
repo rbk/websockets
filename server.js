@@ -41,18 +41,16 @@ io.sockets.on('connection', function(socket){
     socket.on('add_todo', function(data){
         var new_todo = new Todo( data );
         new_todo.save();
-    })
+    });
     socket.on('remove_todo', function(data){
         var object = {_id:data};
         var query = Todo.remove( object );
         query.exec(function(err, todos){
-            // socket.emit('load_todos', todos );
             console.log( "error: " + err );
-            // console.log( "error: " + err );
         });
         // var new_todo = new Todo( data );
         // new_todo.save();
-    })
+    });
 });
 
 // var chatSchema = mongoose.Schema({

@@ -26,10 +26,11 @@ app.factory('socket', function ($rootScope) {
 
 app.controller('TodoCtrl', function( $scope, socket ){
 	
-	$scope.todos = [];
+	$scope.todos;
 
 	socket.on('load_todos', function( data ){
-		
+		console.log( data )
+		$scope.todos = data;
 	})
 
 	$scope.addTodo = function(){
