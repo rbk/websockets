@@ -40,11 +40,16 @@ io.sockets.on('connection', function(socket){
 
     socket.on('add_todo', function(data){
         var new_todo = new Todo( data );
-        new_todo.save();
-        var query = Todo.find();
-        query.exec(function(err, todos){
-            socket.emit('load_todos', todos );
-            socket.broadcast.emit('load_todos', todos );
+        new_todo.save(function(err){
+            if( err ){
+                console.log( 'error saving' );
+            } else {
+                var query = Todo.find({});
+                query.exec(function(err, todos){
+                    socket.emit('load_todos', todos );
+                    socket.broadcast.emit('load_todos', todos );
+                });
+            }
         });
     });
     socket.on('remove_todo', function(data){
