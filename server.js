@@ -33,7 +33,7 @@ var Todo = mongoose.model('Todos', todoSchema );
 
 io.sockets.on('connection', function(socket){
 
-    var query = Todo.find({});
+    var query = Todo.find();
     query.exec(function(err, todos){
         socket.emit('load_todos', todos );
     });
@@ -41,12 +41,23 @@ io.sockets.on('connection', function(socket){
     socket.on('add_todo', function(data){
         var new_todo = new Todo( data );
         new_todo.save();
+        var query = Todo.find();
+        query.exec(function(err, todos){
+            socket.emit('load_todos', todos );
+            socket.broadcast.emit('load_todos', todos );
+        });
     });
     socket.on('remove_todo', function(data){
         var object = {_id:data};
         var query = Todo.remove( object );
         query.exec(function(err, todos){
-            console.log( "error: " + err );
+            // console.log( "error: " + err );
+            if( todos == 1 ){
+                var query = Todo.find();
+                query.exec(function(err, todos){
+                    socket.broadcast.emit('load_todos', todos );
+                });
+            }
         });
         // var new_todo = new Todo( data );
         // new_todo.save();

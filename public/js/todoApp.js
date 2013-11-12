@@ -29,20 +29,20 @@ app.controller('TodoCtrl', function( $scope, socket ){
 	$scope.todos;
 
 	socket.on('load_todos', function( data ){
-		console.log( data )
 		$scope.todos = data;
 	})
 
 	$scope.addTodo = function(){
 		var data = { 
+				// '_id' : '',
 				'todoText' : $scope.todoText, 
-				// 'dateAdded' : moment().format("MMM Do YY"), 
+				'dateAdded' : new Date(), 
 				'dateCompleted' : '' 
 		};
 		$scope.todoText = '';
-		$scope.todos.push(data);
+		// $scope.todos.push(data);
 		socket.emit('add_todo', data);
-		console.log( "Sending data to server..." );
+		// console.log( "Sending data to server..." );
 	}
 	$scope.removeTodo = function(index){
 		var data = $scope.todos[index]._id;
