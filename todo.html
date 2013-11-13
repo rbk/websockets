@@ -41,7 +41,9 @@
                 <div class="columns large-5">
                     <h2>Array: $scope.todos</h2>
                     <ol>
-                        <li ng-repeat=" todo in todos "><a ng-click="removeTodo($index)">{{todo.todoText}}</a></li>
+                        <li ng-repeat=" todo in todos ">
+                            <a ng-click="removeTodo($index)">{{todo.todoText}}</a>
+                        </li>
                     </ol>
                 </div>
             </div>

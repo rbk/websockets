@@ -33,6 +33,10 @@ app.controller('TodoCtrl', function( $scope, socket ){
 	})
 
 	$scope.addTodo = function(){
+        
+        if( $scope.todoText.length == 0 )
+            return;
+        
 		var data = { 
 				// '_id' : '',
 				'todoText' : $scope.todoText, 
