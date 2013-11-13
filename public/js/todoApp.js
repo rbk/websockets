@@ -30,7 +30,14 @@ app.controller('TodoCtrl', function( $scope, socket ){
 
 	socket.on('load_todos', function( data ){
 		$scope.todos = data;
-	})
+	});
+    
+    $scope.userName = "";
+    $scope.setName = function(data){
+        $('.name-form').hide();
+        $('.add-form').show();
+        socket.emit( 'set username', $scope.userName );  
+    }
 
 	$scope.addTodo = function(){
         
@@ -38,8 +45,8 @@ app.controller('TodoCtrl', function( $scope, socket ){
             return;
         
 		var data = { 
-				// '_id' : '',
-				'todoText' : $scope.todoText, 
+                'userName' : $scope.userName,
+                'todoText' : $scope.todoText, 
 				'dateAdded' : new Date(), 
 				'dateCompleted' : '' 
 		};

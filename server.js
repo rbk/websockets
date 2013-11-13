@@ -25,6 +25,7 @@ var schema = mongoose.Schema({
 });
 
 var todoSchema = mongoose.Schema({
+    userName : { type : String },
     todoText : { type : String },
     dateAdded : { type : Date, Default : Date.now },
     dateCompleted : { type : Date }
@@ -32,7 +33,13 @@ var todoSchema = mongoose.Schema({
 var Todo = mongoose.model('Todos', todoSchema );
 
 io.sockets.on('connection', function(socket){
-
+    
+    socket.on('set username', function( name ){
+          socket.set('userName', name, function(){
+                console.log( "--- User: " + name + " joined.") 
+          });
+    });
+    
     var query = Todo.find();
     query.exec(function(err, todos){
         socket.emit('load_todos', todos );

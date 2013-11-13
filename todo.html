@@ -31,12 +31,17 @@
             </div>
             <div class="row">
                 <div class="columns large-6">
-                    <h2>Add Todo</h2>
-                    <form>
-                        <input type="text" ng-model="todoText" placeholder="Enter a todo..." />
-                        <button ng-click="addTodo()">Add Todo</button>
-                    </form>
-                    
+                    <div class="add-form">
+                        <h2>Add Todo</h2>
+                        <form>
+                            <input type="text" ng-model="todoText" placeholder="Enter a todo..." />
+                            <button ng-click="addTodo()">Add Todo</button>
+                        </form>
+                    </div>
+                    <div class="name-form">
+                        <input type="text" ng-model="userName" placeholder="Enter your name..."/>
+                        <button ng-click="setName()">Set Name</button>
+                    </div>
                 </div>
                 <div class="columns large-5">
                     <h2>Array: $scope.todos</h2>

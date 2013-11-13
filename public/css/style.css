@@ -52,3 +52,9 @@ body {
 .tttboard .square:hover {
     background-color: #CCC;   
 }
+
+
+
+.add-form {
+    display: none;   
+}
