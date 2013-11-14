@@ -8,7 +8,9 @@
         "socket.io": "latest",
         "foundation": "latest",
         "progress": "latest",
-        "mongoose":"latest"
+        "mongoose":"3.8.0",
+        "passport":"latest",
+        "passport-local":"latest"
     },
     "author": "Richard"
 }
