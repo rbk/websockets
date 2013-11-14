@@ -93,7 +93,7 @@ app.use(express.static(__dirname + '/public'));
 
 /* Routes */
 app.get('/', function( req, res ){
-    res.sendfile('index.html');
+    res.sendfile('login.html');
 });
 app.get('/tic', function( req, res ){
     res.sendfile('tictactoe.html');
