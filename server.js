@@ -3,6 +3,8 @@
 var express = require('express'),
     app = express(),
     sockets = require('socket.io'),
+    passport = require('passport'),
+    LocalStradegy = require('passport-local').Stradegy,
     port = 3700;
 var io = sockets.listen( app.listen( port ) );
 
@@ -17,12 +19,18 @@ mongoose.connect('mongodb://localhost/' + database, function(err){
     }
 });
 
-var schema = mongoose.Schema({
-
-    name : { type : String },
-    date : { type : Date, default : Date.now }
+var userSchema = mongoose.Schema({
+    userName : { type : String },
+    password : { type : String }
 
 });
+var Users = mongoose.model('users', userSchema);
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/',
+                                   failureFlash: true })
+);
 
 var todoSchema = mongoose.Schema({
     userName : { type : String },
@@ -31,6 +39,9 @@ var todoSchema = mongoose.Schema({
     dateCompleted : { type : Date }
 });
 var Todo = mongoose.model('Todos', todoSchema );
+
+
+
 
 io.sockets.on('connection', function(socket){
     
@@ -93,6 +104,9 @@ app.use(express.static(__dirname + '/public'));
 
 /* Routes */
 app.get('/', function( req, res ){
+    res.sendfile('index.html');
+});
+app.get('/login', function( req, res ){
     res.sendfile('login.html');
 });
 app.get('/tic', function( req, res ){
