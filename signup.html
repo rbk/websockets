@@ -1,7 +1,7 @@
 <!DOCtype html>
 <html lang="en">
     <head>
-        <title>Login</title>
+        <title>Sign Up</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="foundation/css/foundation.min.css"/>
         <link rel="stylesheet" type="text/css" href="foundation/css/normalize.css"/>
@@ -26,12 +26,14 @@
         <div class="row">
             <div class="columns large-centered large-4">
                 <div class="panel">
-                    <form action="/login" method="post">
+                    <h2>Sign up</h2>
+                    <form action="/signup" method="post">
+                        <input type="text" name="email" id="email" placeholder="Email"/>
                         <input type="text" name="userName" id="userName" placeholder="username"/>
                         <input type="password" name="password" id="password" placeholder="password"/>
+                        <input type="password" name="password2" id="password2" placeholder="repeat password"/>
                         <input type="submit" value="Login" class="tiny button"/>
                     </form>
-                    <a href="/signup">Need an account?</a>
                 </div>
             </div>
         </div>

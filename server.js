@@ -4,10 +4,20 @@ var express = require('express'),
     app = express(),
     sockets = require('socket.io'),
     passport = require('passport'),
-    LocalStradegy = require('passport-local').Stradegy,
+    LocalStrategy = require('passport-local').Strategy,
     port = 3700;
-var io = sockets.listen( app.listen( port ) );
 
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+var io = sockets.listen( app.listen( port ) );
 
 
 var mongoose = require('mongoose');
@@ -22,6 +32,7 @@ mongoose.connect('mongodb://localhost/' + database, function(err){
 });
 
 var userSchema = mongoose.Schema({
+    emailAddress : { type : String, unique : true },
     userName : { type : String },
     password : { type : String }
 
@@ -110,6 +121,9 @@ app.get('/', function( req, res ){
 });
 app.get('/login', function( req, res ){
     res.sendfile('login.html');
+});
+app.get('/signup', function( req, res ){
+    res.sendfile('signup.html');
 });
 app.get('/tic', function( req, res ){
     res.sendfile('tictactoe.html');
