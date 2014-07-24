@@ -7,16 +7,16 @@ var express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     port = 3700;
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
-      return done(null, user);
-    });
-  }
-));
+// passport.use(new LocalStrategy(
+//   function(username, password, done) {
+//     User.findOne({ username: username }, function (err, user) {
+//       if (err) { return done(err); }
+//       if (!user) { return done(null, false); }
+//       if (!user.verifyPassword(password)) { return done(null, false); }
+//       return done(null, user);
+//     });
+//   }
+// ));
 var io = sockets.listen( app.listen( port ) );
 
 
@@ -39,11 +39,12 @@ var userSchema = mongoose.Schema({
 });
 var Users = mongoose.model('users', userSchema);
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/',
-                                   failureFlash: true })
-);
+// app.post('/login',
+//   passport.authenticate('local', { successRedirect: '/',
+//                                    failureRedirect: '/',
+//                                    failureFlash: true })
+// );
+// app.post('/signup', passport)
 
 var todoSchema = mongoose.Schema({
     userName : { type : String },
